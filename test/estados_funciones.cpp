@@ -1,3 +1,7 @@
+#include <Arduino.h>
+
+void changeState(int newState);
+
 enum State
 {
   PosicionA,
@@ -89,24 +93,6 @@ void setup()
   outputA();
 }
 
-void loop() 
-{
-  readInput();
-  updateStateMachine();
-}
-
-// Actualiza el estado de la maquina
-void updateStateMachine()
-{
-  switch (currentState)
-  {
-    case PosicionA: stateA(); break;
-    case PosicionB: stateB(); break;
-    case PosicionC: stateC(); break;
-    case PosicionD: stateD(); break;
-  }
-}
-
 // Lee la entrada por puerto serie
 void readInput()
 {
@@ -138,4 +124,23 @@ void changeState(int newState)
     case State::PosicionD: outputD();   break;
     default: break;
   }
+}
+
+// Actualiza el estado de la maquina
+void updateStateMachine()
+{
+  switch (currentState)
+  {
+    case PosicionA: stateA(); break;
+    case PosicionB: stateB(); break;
+    case PosicionC: stateC(); break;
+    case PosicionD: stateD(); break;
+  }
+}
+
+
+void loop() 
+{
+  readInput();
+  updateStateMachine();
 }

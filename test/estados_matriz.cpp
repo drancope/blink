@@ -58,19 +58,6 @@ const byte stateChange[4][4] PROGMEM =
   { PosicionD, PosicionA, PosicionD, PosicionC },
 };
 
-void setup()
-{
-  Serial.begin(9600);
-  currentState = PosicionA;
-  outputA();
-}
-
-void loop() 
-{
-  readInput();
-  updateStateMachine();
-}
-    
 void updateStateMachine()
 {
   State newState = (State)pgm_read_byte(&stateChange[currentState][currentInput]);
@@ -98,3 +85,17 @@ void readInput()
     }
   }
 }
+
+void setup()
+{
+  Serial.begin(9600);
+  currentState = PosicionA;
+  outputA();
+}
+
+void loop() 
+{
+  readInput();
+  updateStateMachine();
+}
+    
